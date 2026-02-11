@@ -1,0 +1,35 @@
+{
+  "hero": {
+    "title": "Estevão Venancio Garcia",
+    "subtitle": "A excelência da representação imobiliária moldada por propósito e visão estratégica",
+    "bgImage": "https://images.unsplash.com/photo-1600596542815-27bfef10fa66?q=80&w=2070&auto=format&fit=crop"
+  },
+  "personalBroker": {
+    "titlePrefix": "Imagine um profissional",
+    "titleHighlight": "100% dedicado",
+    "titleSuffix": "a você!",
+    "image": "https://imgur.com/geEQWnC.png",
+    "text1": "A verdadeira exclusividade não está apenas no imóvel, mas na qualidade da atenção que você recebe. Minha atuação é definida por um atendimento meticuloso e 100% personalizado. Não acredito em fórmulas prontas; acredito em ouvir ativamente, entender profundamente o momento de vida de cada cliente e desenhar uma jornada sob medida para suas necessidades.",
+    "text2": "Comigo, você tem um parceiro dedicado a tornar o processo leve, seguro e transparente. Minha autoridade vem da capacidade de colocar os seus interesses no centro de cada decisão, garantindo que cada detalhe seja tratado com a máxima excelência",
+    "quote": "Menos volume, mais exclusividade. Você não é apenas mais um cliente."
+  },
+  "aboutMe": {
+    "titlePrefix": "Conheça seu",
+    "titleHighlight": "Broker",
+    "image": "https://imgur.com/TEORNgA.png",
+    "paragraph1": "O mercado imobiliário  exige mais do que apenas apresentar imóveis; exige leitura de cenário, precisão e, acima de tudo, um atendimento que coloque o cliente no centro de tudo. Ingressei no mercado com o propósito de romper com a corretagem tradicional. ",
+    "paragraph2": "Minha juventude no mercado é a minha maior força: trago agilidade, ausência de vícios antigos e um compromisso inegociável com a sua experiência. Comigo, a sua jornada de compra ou venda será pautada pela transparência, segurança jurídica e por um nível de cuidado que transforma negócios em relacionamentos de longo prazo.",
+    "paragraph3": "Cada negociação é única. Trago uma visão analítica combinada com um atendimento humano impecável. Não vendo apenas metros quadrados; facilito a construção de legados."
+  },
+  "contact": {
+    "title": "Fale Comigo",
+    "phone": "+55 (11) 98878-2027",
+    "mobile": "+55 (11) 98878-2027",
+    "email": "estevao.v.garcia@creci.org.br",
+    "whatsapp": "https://wa.me/5511939302207?text=Ol%C3%A1%2C%20vim%20pela%20sua%20p%C3%A1gina%20e%20gostaria%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20seus%20empreendimentos",
+    "whatsappOnly": "5511939302207",
+    "instagram": "https://www.instagram.com/evg_consultoria/",
+    "facebook": "#",
+    "youtube": "#"
+  }
+}
