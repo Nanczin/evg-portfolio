@@ -64,14 +64,6 @@ export default function Contact() {
 
         const text = `Olá! Vim através do site e gostaria de falar com você.
 
-DATA DO CONTATO: ${new Date().toLocaleDateString('pt-BR')}
-
-*DADOS DO LEAD:*
------------------------------------
-👤 *Nome:* ${formData.name}
-📧 *Email:* ${formData.email}
-📱 *Telefone:* ${formData.phone}
-
 📝 *Mensagem:*
 ${formData.message}`;
 
