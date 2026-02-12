@@ -91,7 +91,7 @@ ${formData.message}`;
                         </motion.h2>
 
                         <div className="space-y-4">
-                            {content.contact.phone && (
+                            {content.contact.phone && content.contact.phone.trim() !== "" && (
                                 <div className="flex items-center gap-4 group cursor-pointer">
                                     <div className="p-3 rounded-full border border-gray-800 group-hover:border-brand-gold transition-colors">
                                         <Phone className="w-6 h-6 text-gray-400 group-hover:text-brand-gold" />
@@ -111,7 +111,7 @@ ${formData.message}`;
                                 </div>
                             )}
 
-                            {content.contact.email && (
+                            {content.contact.email && content.contact.email.trim() !== "" && (
                                 <div className="flex items-center gap-4 group cursor-pointer">
                                     <div className="p-3 rounded-full border border-gray-800 group-hover:border-brand-gold transition-colors">
                                         <Mail className="w-6 h-6 text-gray-400 group-hover:text-brand-gold" />
