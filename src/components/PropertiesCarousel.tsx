@@ -22,8 +22,8 @@ interface Property {
     link?: string;
 }
 
-// Duplicate list to ensure smooth infinite loop with few items
-const properties = [...propertyData, ...propertyData, ...propertyData];
+// Use original data directly to ensure pagination dots match actual item count
+const properties = propertyData;
 
 const Wrapper = ({ children, id }: { children: React.ReactNode; id: number }) => {
     return (
