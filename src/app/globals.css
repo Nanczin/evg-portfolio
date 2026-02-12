@@ -34,3 +34,19 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #D4AF37;
 }
+
+/* Swiper Pagination Customization */
+.swiper-pagination-bullet {
+  background-color: #ffffff !important;
+  opacity: 0.3 !important;
+  width: 10px !important;
+  height: 10px !important;
+  transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #D4AF37 !important; /* Brand Gold */
+  opacity: 1 !important;
+  width: 30px !important; /* Pill shape for active state */
+  border-radius: 5px !important;
+}
