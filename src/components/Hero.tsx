@@ -3,14 +3,26 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { Suspense, lazy } from "react";
 
 import contentData from "@/data/content.json";
+
+// Lazy load 3D component for better performance
+const Building3D = lazy(() => import("@/components/Building3D"));
+
 
 export default function Hero({ content = contentData }: { content?: any }) {
     return (
         <section id="home" className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-brand-black">
             {/* Background Overlay */}
             <div className="absolute inset-0 z-0">
+                {/* 3D Building Scene */}
+                <div className="absolute inset-0 opacity-40">
+                    <Suspense fallback={<div className="w-full h-full bg-transparent" />}>
+                        <Building3D />
+                    </Suspense>
+                </div>
+
                 {/* Base gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
 
