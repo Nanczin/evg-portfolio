@@ -23,6 +23,7 @@ export default function AdminPage() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [activeTab, setActiveTab] = useState("properties");
+    const [leads, setLeads] = useState<any[]>([]); // Novo estado para leads
     const [bulkInputs, setBulkInputs] = useState<{ [key: number]: string }>({});
 
     const handleBulkInputChange = (propertyId: number, value: string) => {
@@ -78,6 +79,7 @@ export default function AdminPage() {
         if (isAuthenticated) {
             fetchProperties();
             fetchContent();
+            fetchLeads(); // Buscar leads ao autenticar
         }
     }, [isAuthenticated]);
 
@@ -100,6 +102,16 @@ export default function AdminPage() {
             setContent(data);
         } catch (err) {
             console.error("Failed to fetch content", err);
+        }
+    };
+
+    const fetchLeads = async () => {
+        try {
+            const res = await fetch("/api/leads");
+            const data = await res.json();
+            setLeads(data || []);
+        } catch (err) {
+            console.error("Failed to fetch leads", err);
         }
     };
 
@@ -292,6 +304,7 @@ export default function AdminPage() {
                 <div className="flex gap-4 mb-8 border-b border-white/10 pb-4 overflow-x-auto">
                     {[
                         { id: 'properties', label: 'Propriedades' },
+                        { id: 'leads', label: 'Leads' }, // Nova aba
                         { id: 'hero', label: 'Início' },
                         { id: 'personalBroker', label: 'Personal Broker' },
                         { id: 'aboutMe', label: 'Sobre Mim' },
@@ -397,6 +410,47 @@ export default function AdminPage() {
                                         </div>
                                     </div>
                                 ))}
+                            </div>
+                        )}
+
+                        {/* LEADS TAB */}
+                        {activeTab === 'leads' && (
+                            <div className="space-y-6">
+                                <h2 className="text-2xl font-heading text-white">Leads Recebidos</h2>
+                                <p className="text-xs text-yellow-500 bg-yellow-900/20 p-2 rounded border border-yellow-900/50 mb-4">
+                                    Nota: Os leads mostrados aqui são armazenados localmente. Em produção (Vercel), eles podem não persistir entre deploys ou reinicializações.
+                                </p>
+                                <div className="space-y-4">
+                                    {(!leads || leads.length === 0) ? (
+                                        <p className="text-gray-500 italic p-4 text-center border border-white/5 rounded">Nenhum lead encontrado ainda.</p>
+                                    ) : (
+                                        leads.map((lead: any, index: number) => (
+                                            <div key={index} className="bg-brand-gray border border-white/5 p-4 rounded-lg shadow-lg">
+                                                <div className="flex flex-col md:flex-row justify-between md:items-center mb-4 gap-2 border-b border-white/5 pb-2">
+                                                    <div>
+                                                        <h3 className="text-lg text-brand-gold font-bold">{lead.name}</h3>
+                                                        <p className="text-xs text-gray-500">{new Date(lead.date).toLocaleString('pt-BR')}</p>
+                                                    </div>
+                                                    <span className="text-xs bg-white/10 px-2 py-1 rounded text-gray-300 self-start md:self-center uppercase tracking-wider">{lead.status || 'Novo'}</span>
+                                                </div>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
+                                                    <div className="bg-black/20 p-2 rounded">
+                                                        <p className="text-gray-500 text-[10px] uppercase font-bold text-brand-gold">Email</p>
+                                                        <p className="text-gray-300 break-all">{lead.email}</p>
+                                                    </div>
+                                                    <div className="bg-black/20 p-2 rounded">
+                                                        <p className="text-gray-500 text-[10px] uppercase font-bold text-brand-gold">Telefone</p>
+                                                        <p className="text-gray-300">{lead.phone}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="bg-black/30 p-3 rounded border border-white/5">
+                                                    <p className="text-gray-500 text-[10px] uppercase font-bold text-brand-gold mb-1">Mensagem</p>
+                                                    <p className="text-gray-300 whitespace-pre-wrap text-sm">{lead.message}</p>
+                                                </div>
+                                            </div>
+                                        ))
+                                    )}
+                                </div>
                             </div>
                         )}
 
