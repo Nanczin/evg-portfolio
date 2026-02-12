@@ -183,6 +183,8 @@ ${formData.message}`;
                                     onChange={handlePhoneChange}
                                     placeholder="+55 (11) 98888-8888"
                                     required
+                                    pattern="^\+55 \(\d{2}\) \d{4,5}-\d{4}$"
+                                    title="Por favor, preencha o telefone completo no formato: +55 (XX) XXXXX-XXXX"
                                     minLength={18}
                                     maxLength={19}
                                     className="w-full bg-transparent border-b border-gray-700 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-brand-gold transition-colors text-lg"
