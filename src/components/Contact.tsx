@@ -62,7 +62,18 @@ export default function Contact() {
             whatsappTarget = match ? match[1] : "5511988782027";
         }
 
-        const text = `*Novo Contato via Site*\n\n*Nome:* ${formData.name}\n*Email:* ${formData.email}\n*Telefone:* ${formData.phone}\n*Mensagem:* ${formData.message}`;
+        const text = `Olá! Vim através do site e gostaria de falar com você.
+
+DATA DO CONTATO: ${new Date().toLocaleDateString('pt-BR')}
+
+*DADOS DO LEAD:*
+-----------------------------------
+👤 *Nome:* ${formData.name}
+📧 *Email:* ${formData.email}
+📱 *Telefone:* ${formData.phone}
+
+📝 *Mensagem:*
+${formData.message}`;
 
         const url = `https://wa.me/${whatsappTarget}?text=${encodeURIComponent(text)}`;
         window.open(url, '_blank');
