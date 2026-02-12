@@ -8,7 +8,7 @@ import content from "@/data/content.json";
 
 export default function Hero() {
     return (
-        <section id="home" className="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-brand-black">
+        <section id="home" className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-brand-black">
             {/* Background Overlay */}
             <div className="absolute inset-0 z-0">
                 {/* Base gradient background */}
@@ -65,10 +65,11 @@ export default function Hero() {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, y: [0, 10, 0] }}
-                transition={{ delay: 2, duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
+                transition={{ delay: 1, duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-30 cursor-pointer"
+                onClick={() => document.getElementById('properties')?.scrollIntoView({ behavior: 'smooth' })}
             >
-                <ChevronDown className="text-brand-gold w-8 h-8 opacity-70" />
+                <ChevronDown className="text-brand-gold w-10 h-10 md:w-12 md:h-12 opacity-80 hover:opacity-100 transition-opacity drop-shadow-lg" />
             </motion.div>
         </section>
     );
