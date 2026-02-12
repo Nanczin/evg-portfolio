@@ -91,15 +91,17 @@ ${formData.message}`;
                         </motion.h2>
 
                         <div className="space-y-4">
-                            <div className="flex items-center gap-4 group cursor-pointer">
-                                <div className="p-3 rounded-full border border-gray-800 group-hover:border-brand-gold transition-colors">
-                                    <Phone className="w-6 h-6 text-gray-400 group-hover:text-brand-gold" />
+                            {content.contact.phone && (
+                                <div className="flex items-center gap-4 group cursor-pointer">
+                                    <div className="p-3 rounded-full border border-gray-800 group-hover:border-brand-gold transition-colors">
+                                        <Phone className="w-6 h-6 text-gray-400 group-hover:text-brand-gold" />
+                                    </div>
+                                    <span className="text-xl font-body text-gray-300 group-hover:text-white transition-colors">{content.contact.phone}</span>
                                 </div>
-                                <span className="text-xl font-body text-gray-300 group-hover:text-white transition-colors">{content.contact.phone}</span>
-                            </div>
+                            )}
 
                             {/* @ts-ignore */}
-                            {content.contact.mobile && (
+                            {content.contact.mobile && content.contact.mobile.trim() !== "" && (
                                 <div className="flex items-center gap-4 group cursor-pointer">
                                     <div className="p-3 rounded-full border border-gray-800 group-hover:border-brand-gold transition-colors">
                                         <Smartphone className="w-6 h-6 text-gray-400 group-hover:text-brand-gold" />
@@ -109,12 +111,14 @@ ${formData.message}`;
                                 </div>
                             )}
 
-                            <div className="flex items-center gap-4 group cursor-pointer">
-                                <div className="p-3 rounded-full border border-gray-800 group-hover:border-brand-gold transition-colors">
-                                    <Mail className="w-6 h-6 text-gray-400 group-hover:text-brand-gold" />
+                            {content.contact.email && (
+                                <div className="flex items-center gap-4 group cursor-pointer">
+                                    <div className="p-3 rounded-full border border-gray-800 group-hover:border-brand-gold transition-colors">
+                                        <Mail className="w-6 h-6 text-gray-400 group-hover:text-brand-gold" />
+                                    </div>
+                                    <span className="text-xl font-body text-gray-300 group-hover:text-white transition-colors">{content.contact.email}</span>
                                 </div>
-                                <span className="text-xl font-body text-gray-300 group-hover:text-white transition-colors">{content.contact.email}</span>
-                            </div>
+                            )}
                         </div>
 
                         <div className="pt-8 border-t border-gray-900">
