@@ -510,8 +510,8 @@ export default function AdminPage() {
                                             paragraph1: "Parágrafo 1",
                                             paragraph2: "Parágrafo 2",
                                             paragraph3: "Parágrafo 3",
-                                            phone: "Telefone (Fixo)",
-                                            mobile: "Celular (Opcional)",
+                                            phone: "Telefone Fixo / Secundário (Opcional)",
+                                            mobile: "Celular / WhatsApp (Principal)",
                                             email: "E-mail",
                                             whatsappOnly: "Número do WhatsApp (Prioritário)",
                                             // whatsapp: "Link Gerado Automaticamente (Não editar)", // Ocultando da edição direta para evitar erros
