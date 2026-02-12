@@ -72,7 +72,7 @@ ${formData.message}`;
     };
 
     return (
-        <section id="contact" className="py-20 bg-[#050505] text-white relative">
+        <section id="contact" className="py-12 md:py-20 bg-[#050505] text-white relative">
             {/* Gradient transition from previous section */}
             <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black to-transparent pointer-events-none z-10"></div>
 
@@ -85,7 +85,7 @@ ${formData.message}`;
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-5xl md:text-7xl font-heading text-white"
+                            className="text-4xl md:text-6xl lg:text-7xl font-heading text-white"
                         >
                             {content.contact.title}
                         </motion.h2>

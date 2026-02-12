@@ -1,7 +1,7 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Mousewheel } from "swiper/modules";
+import { Navigation, Pagination, Mousewheel, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -52,23 +52,31 @@ export default function PropertiesCarousel({ properties = propertyData }: Props)
             </div>
 
             <Swiper
-                modules={[Navigation, Pagination, Mousewheel]}
+                modules={[Navigation, Pagination, Mousewheel, Autoplay]}
                 spaceBetween={30}
                 slidesPerView={1.2}
                 centeredSlides={true}
                 loop={true}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                }}
                 mousewheel={true}
                 navigation
                 pagination={{ clickable: true }}
                 breakpoints={{
                     640: {
-                        slidesPerView: 2.2,
+                        slidesPerView: 2.1,
+                    },
+                    768: {
+                        slidesPerView: 2.5,
                     },
                     1024: {
                         slidesPerView: 3.2,
                     },
                 }}
-                className="w-full h-[500px] md:h-[600px] pb-12 properties-swiper"
+                className="w-full h-[450px] md:h-[600px] pb-12 properties-swiper"
             >
                 {properties.map((property, idx) => (
                     <SwiperSlide key={`${property.id}-${idx}`} className="relative group overflow-hidden rounded-sm cursor-grab active:cursor-grabbing">

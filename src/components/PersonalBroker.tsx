@@ -30,7 +30,7 @@ export default function PersonalBroker({ content = contentData }: { content?: an
             </div>
 
             {/* Content Side */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-20 py-16">
+            <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-20 py-12 md:py-16">
                 <motion.div
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}

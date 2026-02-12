@@ -12,7 +12,7 @@ export default function AboutMe({ content = contentData }: { content?: any }) {
             <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#0f0f0f] to-transparent pointer-events-none z-10"></div>
 
             {/* Content Side (Left) */}
-            <div className="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-20 py-16 relative">
+            <div className="w-full md:w-1/2 flex flex-col justify-center px-6 md:px-20 py-12 md:py-16 relative">
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}

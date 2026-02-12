@@ -3,12 +3,9 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
-import { Suspense, lazy } from "react";
+
 
 import contentData from "@/data/content.json";
-
-// Lazy load 3D component for better performance
-const Building3D = lazy(() => import("@/components/Building3D"));
 
 
 export default function Hero({ content = contentData }: { content?: any }) {
@@ -16,15 +13,8 @@ export default function Hero({ content = contentData }: { content?: any }) {
         <section id="home" className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-brand-black">
             {/* Background Overlay */}
             <div className="absolute inset-0 z-0">
-                {/* 3D Building Scene */}
-                <div className="absolute inset-0 opacity-40">
-                    <Suspense fallback={<div className="w-full h-full bg-transparent" />}>
-                        <Building3D />
-                    </Suspense>
-                </div>
-
                 {/* Base gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black z-0"></div>
 
                 {/* Geometric pattern overlay */}
                 <div className="absolute inset-0 opacity-10" style={{
@@ -35,26 +25,28 @@ export default function Hero({ content = contentData }: { content?: any }) {
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-brand-gold/5"></div>
 
                 {/* Property image overlay */}
-                {content.hero.bgImage && content.hero.bgImage.startsWith('http') && (
-                    <div className="absolute inset-0 z-0">
-                        <Image
-                            src={content.hero.bgImage}
-                            alt="Background Luxury Real Estate"
-                            fill
-                            priority
-                            quality={90}
-                            className="object-cover opacity-30 mix-blend-overlay"
-                            sizes="100vw"
-                        />
-                    </div>
-                )}
+                {
+                    content.hero.bgImage && content.hero.bgImage.startsWith('http') && (
+                        <div className="absolute inset-0 z-0">
+                            <Image
+                                src={content.hero.bgImage}
+                                alt=""
+                                fill
+                                priority
+                                quality={90}
+                                className="object-cover opacity-30 mix-blend-overlay"
+                                sizes="100vw"
+                            />
+                        </div>
+                    )
+                }
 
                 {/* Vignette effect */}
                 <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/60"></div>
 
                 {/* Animated subtle glow */}
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl animate-pulse"></div>
-            </div>
+            </div >
 
             <div className="relative z-10 text-center px-4 flex flex-col items-center">
 
@@ -90,6 +82,6 @@ export default function Hero({ content = contentData }: { content?: any }) {
             >
                 <ChevronDown className="text-brand-gold w-10 h-10 md:w-12 md:h-12 opacity-80 hover:opacity-100 transition-opacity drop-shadow-lg" />
             </motion.div>
-        </section>
+        </section >
     );
 }
