@@ -1,37 +1,21 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-
-const leadsFilePath = path.join(process.cwd(), 'src', 'data', 'leads.json');
-
-// Helper para garantir que o arquivo existe
-const ensureLeadsFile = () => {
-    if (!fs.existsSync(leadsFilePath)) {
-        // Criar diretório se não existir
-        const dir = path.dirname(leadsFilePath);
-        if (!fs.existsSync(dir)) {
-            fs.mkdirSync(dir, { recursive: true });
-        }
-        // Criar arquivo vazio
-        fs.writeFileSync(leadsFilePath, '[]', 'utf8');
-        return [];
-    }
-    const content = fs.readFileSync(leadsFilePath, 'utf8');
-    try {
-        return JSON.parse(content);
-    } catch (e) {
-        return [];
-    }
-};
+import { supabase } from '@/lib/supabaseClient';
 
 export async function GET() {
     try {
-        const leads = ensureLeadsFile();
-        // Ordenar do mais novo para o mais antigo por padrão
-        // @ts-ignore
-        leads.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        return NextResponse.json(leads);
+        const { data, error } = await supabase
+            .from('leads') // Tabela 'leads' no Supabase
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error('Supabase error:', error);
+            throw new Error(error.message);
+        }
+
+        return NextResponse.json(data || []);
     } catch (error) {
+        console.error('Failed to fetch leads:', error);
         return NextResponse.json({ error: 'Failed to fetch leads' }, { status: 500 });
     }
 }
@@ -39,25 +23,29 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const leads = ensureLeadsFile();
 
-        const newLead = {
-            id: Date.now(), // Timestamp como ID simples
-            name: body.name,
-            email: body.email,
-            phone: body.phone,
-            message: body.message,
-            date: new Date().toISOString(),
-            status: 'new' // new, contacted, closed
-        };
+        // Inserir no Supabase
+        const { data, error } = await supabase
+            .from('leads')
+            .insert([
+                {
+                    name: body.name,
+                    email: body.email,
+                    phone: body.phone,
+                    message: body.message,
+                    status: 'new'
+                }
+            ])
+            .select();
 
-        leads.push(newLead);
+        if (error) {
+            console.error('Supabase error:', error);
+            throw new Error(error.message);
+        }
 
-        fs.writeFileSync(leadsFilePath, JSON.stringify(leads, null, 2), 'utf8');
-
-        return NextResponse.json({ message: 'Lead saved successfully', lead: newLead });
+        return NextResponse.json({ message: 'Lead saved successfully', lead: data ? data[0] : null });
     } catch (error) {
-        console.error('Error saving lead:', error);
+        console.error('Error saving lead to Supabase:', error);
         return NextResponse.json({ error: 'Failed to save lead' }, { status: 500 });
     }
 }

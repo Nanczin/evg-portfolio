@@ -417,8 +417,9 @@ export default function AdminPage() {
                         {activeTab === 'leads' && (
                             <div className="space-y-6">
                                 <h2 className="text-2xl font-heading text-white">Leads Recebidos</h2>
-                                <p className="text-xs text-yellow-500 bg-yellow-900/20 p-2 rounded border border-yellow-900/50 mb-4">
-                                    Nota: Os leads mostrados aqui são armazenados localmente. Em produção (Vercel), eles podem não persistir entre deploys ou reinicializações.
+                                <p className="text-xs text-brand-gold bg-brand-gold/10 p-2 rounded border border-brand-gold/30 mb-4 flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                                    Conectado ao Banco de Dados (Supabase) - Seus leads estão seguros!
                                 </p>
                                 <div className="space-y-4">
                                     {(!leads || leads.length === 0) ? (
@@ -429,7 +430,7 @@ export default function AdminPage() {
                                                 <div className="flex flex-col md:flex-row justify-between md:items-center mb-4 gap-2 border-b border-white/5 pb-2">
                                                     <div>
                                                         <h3 className="text-lg text-brand-gold font-bold">{lead.name}</h3>
-                                                        <p className="text-xs text-gray-500">{new Date(lead.date).toLocaleString('pt-BR')}</p>
+                                                        <p className="text-xs text-gray-500">{new Date(lead.created_at || lead.date).toLocaleString('pt-BR')}</p>
                                                     </div>
                                                     <span className="text-xs bg-white/10 px-2 py-1 rounded text-gray-300 self-start md:self-center uppercase tracking-wider">{lead.status || 'Novo'}</span>
                                                 </div>
