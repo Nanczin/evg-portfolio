@@ -182,7 +182,6 @@ ${formData.message}`;
                                     value={formData.phone}
                                     onChange={handlePhoneChange}
                                     placeholder="+55 (11) 98888-8888"
-                                    required
                                     maxLength={19}
                                     className="w-full bg-transparent border-b border-gray-700 py-4 text-white placeholder-gray-600 focus:outline-none focus:border-brand-gold transition-colors text-lg"
                                 />

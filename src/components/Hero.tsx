@@ -24,10 +24,17 @@ export default function Hero() {
 
                 {/* Property image overlay */}
                 {content.hero.bgImage && content.hero.bgImage.startsWith('http') && (
-                    <div
-                        className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay"
-                        style={{ backgroundImage: `url('${content.hero.bgImage}')` }}
-                    ></div>
+                    <div className="absolute inset-0 z-0">
+                        <Image
+                            src={content.hero.bgImage}
+                            alt="Background Luxury Real Estate"
+                            fill
+                            priority
+                            quality={90}
+                            className="object-cover opacity-30 mix-blend-overlay"
+                            sizes="100vw"
+                        />
+                    </div>
                 )}
 
                 {/* Vignette effect */}

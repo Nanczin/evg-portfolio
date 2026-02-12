@@ -31,6 +31,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://i.imgur.com" />
+      </head>
       <body
         className={`${cinzel.variable} ${montserrat.variable} antialiased bg-[#0a0a0a] text-[#EDEDED] font-body`}
         suppressHydrationWarning
