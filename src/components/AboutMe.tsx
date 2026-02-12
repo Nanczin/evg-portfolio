@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-import content from "@/data/content.json";
+import contentData from "@/data/content.json";
 
-export default function AboutMe() {
+export default function AboutMe({ content = contentData }: { content?: any }) {
     return (
         <section id="about" className="flex flex-col-reverse md:flex-row min-h-screen bg-brand-black relative">
             {/* Gradient transition from previous section */}

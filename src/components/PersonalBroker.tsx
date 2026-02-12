@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-import content from "@/data/content.json";
+import contentData from "@/data/content.json";
 
-export default function PersonalBroker() {
+export default function PersonalBroker({ content = contentData }: { content?: any }) {
     return (
         <section id="personal-broker" className="flex flex-col md:flex-row min-h-screen bg-[#0f0f0f] relative">
             {/* Gradient transition from previous section */}

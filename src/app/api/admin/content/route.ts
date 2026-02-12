@@ -1,25 +1,52 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { supabase } from '@/lib/supabaseClient';
+import contentData from '@/data/content.json';
 
-const filePath = path.join(process.cwd(), 'src', 'data', 'content.json');
+// Fallback for local development or initial load if DB is empty
+const defaultContent = contentData;
 
 export async function GET() {
     try {
-        const fileContent = fs.readFileSync(filePath, 'utf8');
-        const data = JSON.parse(fileContent);
-        return NextResponse.json(data);
+        // Tentar buscar do Supabase
+        const { data, error } = await supabase
+            .from('site_content')
+            .select('data')
+            .eq('key', 'main')
+            .single();
+
+        if (error || !data) {
+            console.log('Fetching from local file (DB empty or error)');
+            return NextResponse.json(defaultContent);
+        }
+
+        return NextResponse.json(data.data);
     } catch (error) {
-        return NextResponse.json({ error: 'Failed to read content' }, { status: 500 });
+        console.error('API Error:', error);
+        return NextResponse.json(defaultContent);
     }
 }
 
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        fs.writeFileSync(filePath, JSON.stringify(body, null, 2), 'utf8');
-        return NextResponse.json({ message: 'Content updated successfully' });
+
+        // Salvar no Supabase
+        const { error } = await supabase
+            .from('site_content')
+            .upsert({
+                key: 'main',
+                data: body,
+                updated_at: new Date().toISOString()
+            }, { onConflict: 'key' });
+
+        if (error) {
+            console.error('Supabase save error:', error);
+            throw error;
+        }
+
+        return NextResponse.json({ message: 'Content updated successfully in Database' });
     } catch (error) {
+        console.error('Failed to update content:', error);
         return NextResponse.json({ error: 'Failed to update content' }, { status: 500 });
     }
 }

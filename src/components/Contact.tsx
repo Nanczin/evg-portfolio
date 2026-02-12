@@ -5,9 +5,9 @@ import { Mail, Phone, Instagram, Facebook, Youtube, Smartphone } from "lucide-re
 import { FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
 
-import content from "@/data/content.json";
+import contentData from "@/data/content.json";
 
-export default function Contact() {
+export default function Contact({ content = contentData }: { content?: any }) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",

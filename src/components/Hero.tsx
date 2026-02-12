@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 
-import content from "@/data/content.json";
+import contentData from "@/data/content.json";
 
-export default function Hero() {
+export default function Hero({ content = contentData }: { content?: any }) {
     return (
         <section id="home" className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-brand-black">
             {/* Background Overlay */}

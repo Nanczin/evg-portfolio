@@ -1,26 +1,50 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { supabase } from '@/lib/supabaseClient';
+import propertiesData from '@/data/properties.json';
 
-// Define the path to the JSON file
-const filePath = path.join(process.cwd(), 'src', 'data', 'properties.json');
+// Fallback for local development or initial load if DB is empty
+const defaultProperties = propertiesData;
 
 export async function GET() {
     try {
-        const fileContent = fs.readFileSync(filePath, 'utf8');
-        const data = JSON.parse(fileContent);
-        return NextResponse.json(data);
+        const { data, error } = await supabase
+            .from('site_content')
+            .select('data')
+            .eq('key', 'properties')
+            .single();
+
+        if (error || !data) {
+            console.log('Fetching properties from local file (DB empty or error)');
+            return NextResponse.json(defaultProperties);
+        }
+
+        return NextResponse.json(data.data);
     } catch (error) {
-        return NextResponse.json({ error: 'Failed to read data' }, { status: 500 });
+        console.error('API Error:', error);
+        return NextResponse.json(defaultProperties);
     }
 }
 
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        fs.writeFileSync(filePath, JSON.stringify(body, null, 2), 'utf8');
-        return NextResponse.json({ message: 'Data updated successfully' });
+
+        const { error } = await supabase
+            .from('site_content')
+            .upsert({
+                key: 'properties',
+                data: body,
+                updated_at: new Date().toISOString()
+            }, { onConflict: 'key' });
+
+        if (error) {
+            console.error('Supabase properties save error:', error);
+            throw error;
+        }
+
+        return NextResponse.json({ message: 'Properties updated successfully in Database' });
     } catch (error) {
-        return NextResponse.json({ error: 'Failed to update data' }, { status: 500 });
+        console.error('Failed to update properties', error);
+        return NextResponse.json({ error: 'Failed to update properties' }, { status: 500 });
     }
 }

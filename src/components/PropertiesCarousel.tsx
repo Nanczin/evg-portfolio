@@ -22,8 +22,7 @@ interface Property {
     link?: string;
 }
 
-// Use original data directly to ensure pagination dots match actual item count
-const properties = propertyData;
+// Use prop 'properties' (default is 'propertyData' from destructuring)
 
 const Wrapper = ({ children, id }: { children: React.ReactNode; id: number }) => {
     return (
@@ -36,7 +35,11 @@ const Wrapper = ({ children, id }: { children: React.ReactNode; id: number }) =>
     );
 };
 
-export default function PropertiesCarousel() {
+interface Props {
+    properties?: Property[];
+}
+
+export default function PropertiesCarousel({ properties = propertyData }: Props) {
     return (
         <section id="properties" className="py-20 bg-brand-black relative">
             {/* Gradient transition from previous section */}
