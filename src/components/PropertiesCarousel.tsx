@@ -41,12 +41,12 @@ interface Props {
 
 export default function PropertiesCarousel({ properties = propertyData }: Props) {
     return (
-        <section id="properties" className="py-20 bg-brand-black relative">
+        <section id="properties" className="py-12 md:py-20 bg-brand-black relative">
             {/* Gradient transition from previous section */}
             <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/50 to-transparent pointer-events-none"></div>
 
-            <div className="container mx-auto px-6 mb-12">
-                <h2 className="text-3xl md:text-5xl font-heading text-white uppercase tracking-widest border-l-4 border-brand-gold pl-4">
+            <div className="container mx-auto px-6 mb-8 md:mb-12">
+                <h2 className="text-xl md:text-5xl font-heading text-white uppercase tracking-wider md:tracking-widest border-l-4 border-brand-gold pl-4 break-words">
                     Empreendimentos
                 </h2>
             </div>

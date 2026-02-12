@@ -80,7 +80,7 @@ ${formData.message}`;
                 <div className="flex flex-col md:flex-row gap-16">
 
                     {/* Contact Info */}
-                    <div className="w-full md:w-1/2 space-y-10">
+                    <div className="w-full md:w-1/2 space-y-6 md:space-y-10">
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -116,7 +116,7 @@ ${formData.message}`;
                                     <div className="p-3 rounded-full border border-gray-800 group-hover:border-brand-gold transition-colors">
                                         <Mail className="w-6 h-6 text-gray-400 group-hover:text-brand-gold" />
                                     </div>
-                                    <span className="text-xl font-body text-gray-300 group-hover:text-white transition-colors">{content.contact.email}</span>
+                                    <span className="flex-1 min-w-0 text-base md:text-xl font-body text-gray-300 group-hover:text-white transition-colors break-all">{content.contact.email}</span>
                                 </div>
                             )}
                         </div>

@@ -16,11 +16,6 @@ export default function Hero({ content = contentData }: { content?: any }) {
                 {/* Base gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black z-0"></div>
 
-                {/* Geometric pattern overlay */}
-                <div className="absolute inset-0 opacity-10" style={{
-                    backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212, 175, 55, 0.03) 35px, rgba(212, 175, 55, 0.03) 70px)`
-                }}></div>
-
                 {/* Gold accent gradient */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-brand-gold/5"></div>
 
@@ -34,7 +29,7 @@ export default function Hero({ content = contentData }: { content?: any }) {
                                 fill
                                 priority
                                 quality={90}
-                                className="object-cover opacity-30 mix-blend-overlay"
+                                className="object-cover opacity-40"
                                 sizes="100vw"
                             />
                         </div>
@@ -43,9 +38,6 @@ export default function Hero({ content = contentData }: { content?: any }) {
 
                 {/* Vignette effect */}
                 <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/60"></div>
-
-                {/* Animated subtle glow */}
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl animate-pulse"></div>
             </div >
 
             <div className="relative z-10 text-center px-4 flex flex-col items-center">

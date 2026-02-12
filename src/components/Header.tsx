@@ -83,7 +83,7 @@ export default function Header() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        className="fixed inset-0 z-[60] bg-brand-black/95 backdrop-blur-xl flex flex-col justify-center items-center"
+                        className="fixed inset-0 h-[100dvh] z-[60] bg-brand-black/95 backdrop-blur-xl flex flex-col justify-center items-center"
                     >
                         <button
                             onClick={() => setIsMenuOpen(false)}
@@ -91,7 +91,7 @@ export default function Header() {
                         >
                             <X size={32} strokeWidth={1} />
                         </button>
-                        <nav className="flex flex-col gap-8 text-center">
+                        <nav className="flex flex-col gap-6 text-center">
                             {[
                                 { label: "Início", href: "#home" },
                                 { label: "Empreendimentos", href: "#properties" },
@@ -103,7 +103,7 @@ export default function Header() {
                                     key={item.label}
                                     href={item.href}
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="text-3xl font-heading text-white hover:text-brand-gold transition-colors tracking-widest uppercase"
+                                    className="text-2xl font-heading text-white hover:text-brand-gold transition-colors tracking-widest uppercase"
                                 >
                                     {item.label}
                                 </Link>
