@@ -64,7 +64,7 @@ export default function Contact() {
 
         const text = `Olá! Vim através do site e gostaria de falar com você.
 
-📝 *Mensagem:*
+Mensagem:
 ${formData.message}`;
 
         const url = `https://wa.me/${whatsappTarget}?text=${encodeURIComponent(text)}`;
