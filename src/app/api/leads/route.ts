@@ -49,3 +49,29 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'Failed to save lead' }, { status: 500 });
     }
 }
+
+export async function DELETE(request: Request) {
+    try {
+        const { searchParams } = new URL(request.url);
+        const id = searchParams.get('id');
+
+        if (!id) {
+            return NextResponse.json({ error: 'ID is required' }, { status: 400 });
+        }
+
+        const { error } = await supabase
+            .from('leads')
+            .delete()
+            .eq('id', id);
+
+        if (error) {
+            console.error('Supabase delete error:', error);
+            throw error;
+        }
+
+        return NextResponse.json({ message: 'Lead deleted successfully' });
+    } catch (error) {
+        console.error('Failed to delete lead:', error);
+        return NextResponse.json({ error: 'Failed to delete lead' }, { status: 500 });
+    }
+}

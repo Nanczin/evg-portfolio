@@ -115,6 +115,22 @@ export default function AdminPage() {
         }
     };
 
+    const handleDeleteLead = async (id: number) => {
+        if (!confirm("Tem certeza que deseja excluir permanentemente este lead?")) return;
+
+        try {
+            const res = await fetch(`/api/leads?id=${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                setLeads(prev => prev.filter(lead => lead.id !== id));
+            } else {
+                alert("Erro ao excluir lead.");
+            }
+        } catch (err) {
+            console.error("Failed to delete lead", err);
+            alert("Erro ao excluir lead.");
+        }
+    };
+
     const handleSaveProperties = async () => {
         try {
             setLoading(true);
@@ -432,7 +448,16 @@ export default function AdminPage() {
                                                         <h3 className="text-lg text-brand-gold font-bold">{lead.name}</h3>
                                                         <p className="text-xs text-gray-500">{new Date(lead.created_at || lead.date).toLocaleString('pt-BR')}</p>
                                                     </div>
-                                                    <span className="text-xs bg-white/10 px-2 py-1 rounded text-gray-300 self-start md:self-center uppercase tracking-wider">{lead.status || 'Novo'}</span>
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-xs bg-white/10 px-2 py-1 rounded text-gray-300 uppercase tracking-wider">{lead.status || 'Novo'}</span>
+                                                        <button
+                                                            onClick={() => handleDeleteLead(lead.id)}
+                                                            className="text-red-500/50 hover:text-red-500 p-1 transition-colors"
+                                                            title="Excluir Lead"
+                                                        >
+                                                            <Trash2 size={16} />
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-4">
                                                     <div className="bg-black/20 p-2 rounded">
