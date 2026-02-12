@@ -10,6 +10,7 @@ import { X } from "lucide-react";
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [logoError, setLogoError] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -30,14 +31,17 @@ export default function Header() {
                     <Link href="/" className="relative z-50 -ml-4 md:ml-0">
                         <div className="flex items-center gap-2">
                             <div className="relative w-24 h-24 md:w-32 md:h-32">
-                                <Image
-                                    src="https://i.imgur.com/w3KiY9N.png"
-                                    alt="EVG Logo"
-                                    fill
-                                    className="object-contain"
-                                    style={{ filter: 'drop-shadow(0 0 2px rgba(212, 175, 55, 0.8)) drop-shadow(0 0 4px rgba(212, 175, 55, 0.6))' }}
-                                    unoptimized
-                                />
+                                {!logoError && (
+                                    <Image
+                                        src="https://i.imgur.com/w3KiY9N.png"
+                                        alt="EVG Logo"
+                                        fill
+                                        className="object-contain"
+                                        style={{ filter: 'drop-shadow(0 0 2px rgba(212, 175, 55, 0.8)) drop-shadow(0 0 4px rgba(212, 175, 55, 0.6))' }}
+                                        unoptimized
+                                        onError={() => setLogoError(true)}
+                                    />
+                                )}
                             </div>
                         </div>
                     </Link>

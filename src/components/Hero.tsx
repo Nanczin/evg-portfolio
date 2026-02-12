@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
@@ -9,6 +10,7 @@ import contentData from "@/data/content.json";
 
 
 export default function Hero({ content = contentData }: { content?: any }) {
+    const [bgError, setBgError] = useState(false);
     return (
         <section id="home" className="relative h-[100dvh] w-full flex flex-col justify-center items-center overflow-hidden bg-brand-black">
             {/* Background Overlay */}
@@ -21,7 +23,7 @@ export default function Hero({ content = contentData }: { content?: any }) {
 
                 {/* Property image overlay */}
                 {
-                    content.hero.bgImage && content.hero.bgImage.startsWith('http') && (
+                    content.hero.bgImage && content.hero.bgImage.startsWith('http') && !bgError && (
                         <div className="absolute inset-0 z-0">
                             <Image
                                 src={content.hero.bgImage}
@@ -31,6 +33,7 @@ export default function Hero({ content = contentData }: { content?: any }) {
                                 quality={90}
                                 className="object-cover opacity-40"
                                 sizes="100vw"
+                                onError={() => setBgError(true)}
                             />
                         </div>
                     )
