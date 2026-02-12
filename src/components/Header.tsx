@@ -28,7 +28,7 @@ export default function Header() {
                     {/* Logo */}
                     <Link href="/" className="relative z-50 -ml-4 md:ml-0">
                         <div className="flex items-center gap-2">
-                            <div className="relative w-20 h-20 md:w-24 md:h-24">
+                            <div className="relative w-24 h-24 md:w-32 md:h-32">
                                 <Image
                                     src="https://i.imgur.com/w3KiY9N.png"
                                     alt="EVG Logo"
