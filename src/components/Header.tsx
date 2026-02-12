@@ -21,14 +21,14 @@ export default function Header() {
     return (
         <>
             <header
-                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-black/40 backdrop-blur-md py-4 shadow-lg" : "bg-transparent py-6"
+                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-black/40 backdrop-blur-md py-2 shadow-lg" : "bg-transparent py-4"
                     }`}
             >
                 <div className="w-full px-3 flex justify-between items-center">
                     {/* Logo */}
-                    <Link href="/" className="relative z-50 -ml-8 md:ml-0">
+                    <Link href="/" className="relative z-50 -ml-4 md:ml-0">
                         <div className="flex items-center gap-2">
-                            <div className="relative w-32 h-32">
+                            <div className="relative w-20 h-20 md:w-24 md:h-24">
                                 <Image
                                     src="https://i.imgur.com/w3KiY9N.png"
                                     alt="EVG Logo"
