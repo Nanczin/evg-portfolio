@@ -33,7 +33,7 @@ export default function Header() {
                             <div className="relative w-24 h-24 md:w-32 md:h-32">
                                 {!logoError && (
                                     <Image
-                                        src="https://i.imgur.com/w3KiY9N.png"
+                                        src="/logo.png"
                                         alt="EVG Logo"
                                         fill
                                         className="object-contain"

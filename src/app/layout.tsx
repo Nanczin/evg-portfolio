@@ -19,9 +19,9 @@ export const metadata: Metadata = {
   description: "High-end real estate representation with purpose, strategy, and excellence.",
 
   icons: {
-    icon: '/icon.png',
-    shortcut: '/icon.png',
-    apple: '/icon.png',
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
   },
 };
 
