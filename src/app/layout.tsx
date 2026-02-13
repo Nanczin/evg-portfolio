@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   title: "EVG - Estevão Venancio Garcia | Personal Broker",
   description: "High-end real estate representation with purpose, strategy, and excellence.",
 
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
 };
 
 export default function RootLayout({
