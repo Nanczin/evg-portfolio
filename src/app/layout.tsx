@@ -17,11 +17,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "EVG - Estevão Venancio Garcia | Personal Broker",
   description: "High-end real estate representation with purpose, strategy, and excellence.",
-  icons: {
-    icon: 'https://i.imgur.com/6dHb7s4.png',
-    shortcut: 'https://i.imgur.com/6dHb7s4.png',
-    apple: 'https://i.imgur.com/6dHb7s4.png'
-  }
+
 };
 
 export default function RootLayout({
